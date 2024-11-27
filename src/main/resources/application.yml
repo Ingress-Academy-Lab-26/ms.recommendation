@@ -1,0 +1,38 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: myuser
+    password: mysecretpassword
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    open-in-view: false
+  client:
+    urls:
+      ms-auth: https://0cc6f9ab-fbf1-4747-9374-8238a3120474.mock.pstmn.io/ms-auth
+  liquibase:
+    change-log: classpath:liquibase/changelog-master.yml
+
+  rabbitmq:
+    host: localhost
+    username: guest
+    password: guest
+    listener:
+      simple:
+        retry:
+          enabled: true
+          initial-interval: 3s
+          max-attempts: 5
+          max-interval: 5s
+          multiplier: 1
+        missing-queues-fatal: false
+rabbitmq:
+  queue:
+    recommendation: RECOMMENDATION_Q
+    recommendation-dlq: RECOMMENDATION_DLQ
+redis:
+  server:
+    urls: redis://localhost:6379

@@ -1,0 +1,36 @@
+databaseChangeLog:
+  - changeSet:
+      id: Create Category Based Recommendations Table
+      author: Shamil Vasanov
+      changes:
+        - createTable:
+            tableName: category_based_recommendations
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: product_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: category_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: quantity
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: source_type
+                  type: varchar(16)
+                  constraints:
+                    nullable: false
+            remarks: Table to store information about recommendations
